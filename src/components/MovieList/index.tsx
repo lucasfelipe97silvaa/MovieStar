@@ -3,11 +3,13 @@ import { useState } from "react"
 import { View, Text, ScrollView, Image } from "react-native"
 
 import { styles } from "./style"
+import { Link } from "expo-router"
 
 export interface MovieType {
     title: string,
     poster_path: string,
     id: number
+    image: string
     // overview: string,
     // vote_average: string
 }
@@ -35,15 +37,20 @@ getMovies();
 return(
     <View>
         <ScrollView>
-            <View>
-                {
-                movies.map((movie)=> (
-                    <View key={movie.id}>
-                    <Text style={styles.conteiner}>{movie.title}</Text>
-                    </View>
-                ))
-                }
-            </View>
+            
+                <View style={styles.conteiner}>
+                    {
+                    movies.map((movie)=> (
+                        <Link href={`/filme/${movie.id}`}>
+                       
+                        <View key={movie.id}>
+                        <Image style={{width: 100, height: 150}} source={{uri: `https://image.tmdb.org/t/p/w500${movie.poster_path}`}} />
+                        <Text style={styles.conteiner}>{`${movie.title.substring(0,10)}...`}</Text>
+                        </View>
+                        </Link>
+                    ))
+                    }
+                </View>
         </ScrollView>
     </View>
 )
