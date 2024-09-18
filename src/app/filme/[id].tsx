@@ -1,13 +1,24 @@
 import { useState, useEffect} from "react"
+import { useNavigation } from "expo-router"
+import { Link, useLocalSearchParams } from "expo-router"
+
+import { View, Text, Button, Image,ScrollView} from "react-native"
+import { ButtonProps } from "react-native"
+import { styles } from "./style"
+
 import  axios from "axios"
 
-import { Link, useLocalSearchParams } from "expo-router"
-import { View, Text, Button} from "react-native"
-import { ButtonProps } from "react-native"
-import { useNavigation } from "expo-router"
+export interface Filmetype {
+    title: string,
+    poster_path: string,
+    // id: number
+    overview: string,
+    vote_average: string,
+    // genres: string
+}
 
 export default function Filme(){
-    const [filme, setFilme] = useState([])
+    const [filme, setFilme] = useState<Filmetype[]>([])
     
     const navigator = useNavigation()
     const { id } = useLocalSearchParams()  
@@ -24,30 +35,40 @@ const getId = () => {
         }
     }).then(response => {
         setFilme(response.data)
-        console.log(filme)
+        // console.log(filme)
     })
 }
 
 useEffect(() => {
     getId()
-}, [id])
+},[filme] )
     function Voltar(){
        navigator.goBack() 
     }
     
 
-    console.log(id)
+    // console.log(id)
 
     return(
-        <View>
-            <Text>
-                Vôce caiu aqui nessa pagina
-            </Text>
-            <View>
+        <View style={styles.container}>
+            <Image style={{width: 350, height: 500}} source={{uri: `https://image.tmdb.org/t/p/w500${filme.poster_path}`}} />
+            <ScrollView >
+                <View>
+                    <Text  style={styles.title}>Título: {filme.title}</Text>
+                </View>
 
-            </View>
-            <Button title={'voltar'} onPress={Voltar}></Button>
-            
+                <View style={styles.box}>
+                    <View>
+                        <Text style={styles.description}>Sinopse: {filme.overview}</Text>
+                        <Text style={styles.description}>Data de lançamento: {filme.release_date}</Text>
+                        {/* <Text>Gêneros: {filme.genres.map(genero => genero.name).join(', ')}</Text> */}
+                    </View>
+                    <View>
+                        <Text style={styles.description}>Nota média: {filme.vote_average}</Text>
+                    </View>
+                </View>
+                <Button title={'voltar'} onPress={Voltar}></Button>    
+            </ScrollView>
         </View>
     )
 }
