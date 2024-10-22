@@ -4,7 +4,7 @@
 
 O MovieStar é um aplicativo Mobile que conecta os amantes de cinema com às últimas novidades do mundo dos filmes. Com uma interface intuitiva e atraente, o aplicativo permite que os usuários explorem os lançamentos mais recentes, descubram novas histórias e compartilhem suas opiniões.
 
-## Funcionalidades Principais:
+## 📚 Funcionalidades Principais:
 
 Catálogo de Lançamentos: Navegue por uma lista atualizada de filmes recém-lançados, com capas atraentes e informações essenciais.
 
