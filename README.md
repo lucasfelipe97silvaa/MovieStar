@@ -1,4 +1,4 @@
-# MovieSpt - O seu guia para os lançamentos cinematográficos
+# MovieStar - O seu guia para os lançamentos cinematográficos
 
 ## Descrição do Projeto:
 
