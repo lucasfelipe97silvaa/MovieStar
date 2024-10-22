@@ -1,4 +1,5 @@
 # MovieStar - O seu guia para os lançamentos cinematográficos
+</br>
 
 ## Descrição do Projeto:
 
